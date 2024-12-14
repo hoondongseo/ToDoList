@@ -2,6 +2,9 @@ const inputBox = document.getElementById('inputBox');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
 
+let editTodo = null;
+
+// Function addTodo
 const addTodo = () => {
     const inputText = inputBox.value.trim();
     if (inputText.length <= 0) {
@@ -9,24 +12,50 @@ const addTodo = () => {
         return false;
     }
 
-    // P Tag 만들기
-    const li = document.createElement("li");
-    const p = document.createElement("p");
-    p.innerHTML = inputText;
-    li.appendChild(p);
+    if (addBtn.value === "Edit") {
+        editTodo.target.previousElementSibling.innerHTML = inputText;
+        addBtn.value = "Add";
+        inputBox.value = "";
+    }
 
-    // Delete 버튼 만들기
-    const deleteBtn = document.createElement("button");
-    deleteBtn.innerText = "Remove";
-    li.appendChild(deleteBtn);
+    else {
+        // P Tag 만들기
+        const li = document.createElement("li");
+        const p = document.createElement("p");
+        p.innerHTML = inputText;
+        li.appendChild(p);
 
-    // Edit 버튼 만들기
-    const editBtn = document.createElement("button");
-    editBtn.innerText = "Edit";
-    li.appendChild(editBtn);
+        // Edit 버튼 만들기
+        const editBtn = document.createElement("button");
+        editBtn.innerText = "Edit";
+        editBtn.classList.add("btn", "editBtn");
+        li.appendChild(editBtn);
 
-    todoList.appendChild(li);
-    inputBox.value = "";
+        // Delete 버튼 만들기
+        const deleteBtn = document.createElement("button");
+        deleteBtn.innerText = "Remove";
+        deleteBtn.classList.add("btn", "deleteBtn");
+        li.appendChild(deleteBtn);
+
+        todoList.appendChild(li);
+        inputBox.value = "";
+    }
+}
+
+
+// Function to update: (Edit/Delete) to do
+const updateTodo = (e) => {
+    if (e.target.innerHTML === "Remove") {
+        todoList.removeChild(e.target.parentElement);
+    }
+
+    if (e.target.innerHTML === "Edit") {
+        inputBox.value = e.target.previousElementSibling.innerHTML;
+        inputBox.focus();
+        addBtn.value = "Edit";
+        editTodo = e;
+    }
 }
 
 addBtn.addEventListener('click', addTodo);
+todoList.addEventListener('click', updateTodo);
