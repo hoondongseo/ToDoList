@@ -12,9 +12,9 @@ const addTodo = () => {
         return false;
     }
 
-    if (addBtn.value === "Edit") {
+    if (addBtn.value === "편집") {
         editTodo.target.previousElementSibling.innerHTML = inputText;
-        addBtn.value = "Add";
+        addBtn.value = "추가";
         inputBox.value = "";
     }
 
@@ -27,13 +27,13 @@ const addTodo = () => {
 
         // Edit 버튼 만들기
         const editBtn = document.createElement("button");
-        editBtn.innerText = "Edit";
+        editBtn.innerText = "편집";
         editBtn.classList.add("btn", "editBtn");
         li.appendChild(editBtn);
 
         // Delete 버튼 만들기
         const deleteBtn = document.createElement("button");
-        deleteBtn.innerText = "Remove";
+        deleteBtn.innerText = "제거";
         deleteBtn.classList.add("btn", "deleteBtn");
         li.appendChild(deleteBtn);
 
@@ -45,14 +45,14 @@ const addTodo = () => {
 
 // Function to update: (Edit/Delete) to do
 const updateTodo = (e) => {
-    if (e.target.innerHTML === "Remove") {
+    if (e.target.innerHTML === "제거") {
         todoList.removeChild(e.target.parentElement);
     }
 
-    if (e.target.innerHTML === "Edit") {
+    if (e.target.innerHTML === "편집") {
         inputBox.value = e.target.previousElementSibling.innerHTML;
         inputBox.focus();
-        addBtn.value = "Edit";
+        addBtn.value = "편집";
         editTodo = e;
     }
 }
