@@ -1,106 +1,166 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.03) 0%, rgb(240, 248, 255) 100%);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    color: #333;
+}
 
-* {
-    margin: 0;
+#todo-container {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 2px solid #ddd;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#header h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#todo-form {
+    display: flex;
+    align-items: center;
+}
+
+#input-box {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#input-button {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #00bfff;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
-body {
-    background-color: rgb(232, 238, 238);
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.input-container {
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    padding: 20px;
-}
-
-.input-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.input-group input[type="text"] {
-    flex-grow: 1;
-    padding: 12px;
-    margin-block: 12px;
-    border-radius: 4px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    outline: none;
-}
-
-.input-group button {
-    background-color: #3da33d;
+#input-button i {
+    font-size: 20px;
     color: #fff;
-    font-weight: 700;
-    margin-left: 8px;
-    cursor: pointer;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
 }
 
-.input-group button:hover {
-    background-color: #60b160;
+#input-button:hover {
+    background-color: #1e90ff;
 }
 
 ul {
-    width: 70%;
-    max-width: 450px;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: left;
 }
 
-ul li {
-    list-style-type: none;
-    cursor: pointer;
-    margin-block-end: 12px;
-    border-radius: 8px;
-    border: 0.125px solid #a19f9f;
-    padding: 6px 12px;
-    background-color: #ffffff;
+li {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    transition: background-color 0.5s;
+    align-items: center;
+    background: #f9f9f9;
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
-ul li:hover {
-    background-color: #cbcaca;
+li:hover {
+    background: #f1f1f1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-ul li p {
+li label {
     flex-grow: 1;
-    padding: 2px;
 }
 
-.btn {
+.edit-btn,
+.delete-btn {
+    background: transparent;
     border: none;
-    outline: none;
-    font-size: 16px;
-    background-color: none;
-    font-weight: 600;
     cursor: pointer;
-    padding: 8px;
+    padding: 5px;
+    margin-left: 5px;
+    color: #666;
+    font-size: 20px;
+    position: relative;
 }
 
-.deleteBtn {
-    color: #ff0000;
+.edit-btn:hover,
+.delete-btn:hover {
+    color: #333;
 }
 
-.editBtn {
-    color: #008000;
+.completed {
+    text-decoration: line-through;
+    color: #888;
+    background: #e6e6e6;
+}
+
+.counter-container {
+    margin-top: 20px;
+}
+
+#task-counters {
+    font-size: 1.2em;
+}
+
+#clear-tasks-button {
+    background-color: #ff6666;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+#clear-tasks-button:hover {
+    background-color: #ff3333;
+}
+
+.edit-btn[title]:hover::after,
+.delete-btn[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    top: -35px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    transition-delay: 1s;
+}
+
+.edit-btn[title]:hover::after,
+.delete-btn[title]:hover::after {
+    opacity: 1;
+}
+
+button {
+    position: relative;
 }
