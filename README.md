@@ -1,5 +1,9 @@
 # ToDoList
 
+![image](https://github.com/user-attachments/assets/f9a2f0fc-9411-4a81-ad26-f188db06eea9)
+
+## 소개
+
 간단하면서도 직관적인 **ToDoList** 웹 애플리케이션입니다.  
 할 일 관리 기능을 통해 추가, 삭제, 완료 체크가 가능하며 깔끔한 UI를 제공합니다.
 
